@@ -134,7 +134,7 @@ const ParentInfo = ({ onNextStep, onPreviousStep, parentFormData, setFormData })
                             value={parentFormData.parent1WorkingHours}
                             onChange={handleChange}
                             required />
-                        {formErrors.parentFormData.parent1WorkingHours && <div className="invalid-feedback">This field is required.</div>}
+                        {formErrors.parentFormData.parent1WorkingHours && <div className="invalid-feedback">The field is required.</div>}
                     </label>
                 </div>
             </div>
