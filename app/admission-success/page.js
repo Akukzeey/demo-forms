@@ -19,7 +19,6 @@ export default function Page() {
         <div id='Register-success'>
             <div className='success-register-container'>
                 <div className='success-div'>
-                    <TiTick style={{color:'white',fontSize:'35px'}}/>
                 </div>
                 <h1 className='success-header'>Success</h1>
                 <p className='success-p-tag'>Your admission form was submitted successfully.</p>
