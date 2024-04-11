@@ -78,7 +78,7 @@ export default function AdministrationForm() {
           </div>
           {currentStep === 3 && (
               <div>
-                if youve entered the forms correctly you can move to the next step
+                if you have entered the forms correctly you can move to the next step
                 <button>Submit</button>
               </div>
           )}
