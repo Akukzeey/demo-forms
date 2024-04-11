@@ -2,7 +2,6 @@
 import {useRouter} from "next/navigation";
 import {useEffect} from "react";
 import Link from "next/link";
-import { TiTick } from "react-icons/ti";
 
 export default function Page() {
     const router = useRouter();
