@@ -65,7 +65,7 @@ export default function AdministrationForm() {
           <p className='administration-form-p-tag'>The following form must be completed before your application will be considered. Please complete each item carefully.</p>
         </div>
         <div className="step-indicator">
-          Step {currentStep} of 4
+          Step {currentStep} of 3
         </div>
         <form name="administration-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleFormSubmit}>
           <input type="hidden" name="form-name" value="administration-form" />
@@ -76,7 +76,7 @@ export default function AdministrationForm() {
           <div className={currentStep !== 2 ? 'hidden' : ''}>
             <ParentInfo parentFormData={formData.parentInfo} setFormData={setFormData} onNextStep={handleNextStep} onPreviousStep={handlePreviousStep} />
           </div>
-          {currentStep === 4 && (
+          {currentStep === 3 && (
               <div>
                 if youve entered the forms correctly you can move to the next step
                 <button>Submit</button>
