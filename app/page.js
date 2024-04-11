@@ -1,95 +1,88 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { useState } from 'react';
+import StudentInfo from "@/components/StudentForm";
+import ParentInfo from "@/components/ParentForm";
 
-export default function Home() {
+export default function AdministrationForm() {
+  const [formData, setFormData] = useState({
+    studentInfo: {
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      emailAddress: '',
+      age: '',
+    },
+    parentInfo: {
+      parent1FullName: '',
+      parent1Relationship: '',
+      parent1LevelOfEducation: '',
+      parent1WorkingStatus: 'working',
+    },
+  });
+
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const handleNextStep  = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const handlePreviousStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const combinedFormData = {
+      ...formData.studentInfo,
+      ...formData.parentInfo,
+    };
+
+    const flattenedFormData = {};
+
+    Object.keys(combinedFormData).forEach(key => {
+      if (Array.isArray(combinedFormData[key])) {
+        flattenedFormData[key] = combinedFormData[key][0];
+      } else {
+        flattenedFormData[key] = combinedFormData[key];
+      }
+    });
+
+    const textArea = document.createElement('textarea');
+    textArea.style.display = 'none';
+    textArea.name = 'formData';
+    textArea.value = JSON.stringify(flattenedFormData, null, 2);
+    form.appendChild(textArea);
+
+      form.submit();
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div id='Administration-form' className='container'>
+        <div className='administation-note-container'>
+          <p className='administration-form-p-tag'>The following form must be completed before your application will be considered. Please complete each item carefully.</p>
         </div>
+        <div className="step-indicator">
+          Step {currentStep} of 4
+        </div>
+        <form name="administration-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleFormSubmit}>
+          <input type="hidden" name="form-name" value="administration-form" />
+          <input type="hidden" name="bot-field" />
+          <div className={currentStep !== 1 ? 'hidden' : ''}>
+            <StudentInfo formData={formData.studentInfo} setFormData={setFormData} onNextStep={handleNextStep} />
+          </div>
+          <div className={currentStep !== 2 ? 'hidden' : ''}>
+            <ParentInfo parentFormData={formData.parentInfo} setFormData={setFormData} onNextStep={handleNextStep} onPreviousStep={handlePreviousStep} />
+          </div>
+          {currentStep === 4 && (
+              <div>
+                if youve entered the forms correctly you can move to the next step
+                <button>Submit</button>
+              </div>
+          )}
+        </form>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
   );
 }
