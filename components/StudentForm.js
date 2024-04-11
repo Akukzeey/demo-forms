@@ -54,7 +54,6 @@ const StudentForm = ({formData,setFormData,onNextStep}) => {
         }
     };
 
-
     return (
         <div>
             <h1 style={{textAlign:'center',fontWeight:'bold',margin:'30px 0',fontSize:'2rem'}}>Student Information</h1>

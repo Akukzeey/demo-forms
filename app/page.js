@@ -67,7 +67,7 @@ export default function AdministrationForm() {
         <div className="step-indicator">
           Step {currentStep} of 3
         </div>
-        <form name="administration-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleFormSubmit}>
+        <form name="administration-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleFormSubmit} action="/admission-success" data-netlify-success="/admission-success">
           <input type="hidden" name="form-name" value="administration-form" />
           <input type="hidden" name="bot-field" />
           <div className={currentStep !== 1 ? 'hidden' : ''}>
