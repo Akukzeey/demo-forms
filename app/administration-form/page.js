@@ -1,6 +1,4 @@
-import StudentInfo from "@/components/StudentForm";
-import ParentInfo from "@/components/ParentForm";
-
+'use client'
 export default function AdministrationForm() {
     function handleSubmit(e) {
         e.preventDefault()
