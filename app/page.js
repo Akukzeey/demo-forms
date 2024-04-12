@@ -94,6 +94,9 @@ export default function AdministrationForm() {
             <label htmlFor='email'>Email</label>
             <input type='email' id='email' name='email'/>
           </p>
+          <button type='submit'>
+            submit
+          </button>
         </form>
       </div>
   );
