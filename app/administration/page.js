@@ -19,7 +19,7 @@ const Form = () => {
     };
 
     return (
-        <form name="contactForm" method='POST' data-netlify="true" onSubmit={handleSubmit}>
+        <form name="contactForm" method='POST' data-netlify="true">
             <input type='hidden' name='form-name' value='contactForm'/>
             <div hidden>
                 <input name='bot-field'/>
