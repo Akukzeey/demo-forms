@@ -17,8 +17,9 @@ const Form = () => {
         console.log('Form submitted:', formData);
         setFormData({ name: '', email: '', message: '' });
     };
+
     return (
-        <form name="contactForm" data-netlify="true" onSubmit={handleSubmit}>
+        <form name="contactForm" method='POST' data-netlify="true" onSubmit={handleSubmit}>
             <input type='hidden' name='form-name' value='contactForm'/>
             <div hidden>
                 <input name='bot-field'/>
